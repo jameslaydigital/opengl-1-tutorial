@@ -125,3 +125,42 @@ This tutorial and all example code are released into the public domain (or MIT L
 
 This tutorial is designed to teach OpenGL 1.1 concepts that remain relevant for understanding modern graphics programming, even though the API itself is considered legacy.
 
+
+## Note for WSL users
+
+I wrote all of these in wsl2, using XWinrc and the following config that I run from my windows desktop:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<XLaunch
+    WindowMode="MultiWindow"
+    ClientMode="NoClient"
+    LocalClient="False"
+    Display="0"
+    LocalProgram="xcalc"
+    RemoteProgram="xterm"
+    RemotePassword=""
+    PrivateKey=""
+    RemoteHost=""
+    RemoteUser=""
+    XDMCPHost=""
+    XDMCPBroadcast="False"
+    XDMCPIndirect="False"
+    Clipboard="True"
+    ClipboardPrimary="True"
+    ExtraParams=""
+    Wgl="True"
+    DisableAC="True"
+    XDMCPTerminate="False"
+/>
+```
+
+Then, in my `.bashrc`, I added:
+
+```bash
+export DISPLAY=$(ip route list default | awk '{print $3}'):0
+```
+
+Some have recommended `export LIBGL_ALWAYS_INDIRECT=1`, but I would highly
+advise against it - I cannot get things to run with a decent framerate if I
+enable this setting.
