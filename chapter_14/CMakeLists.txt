@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.10)
+project(Chapter14 C)
+set(CMAKE_C_STANDARD 99)
+find_package(OpenGL REQUIRED)
+find_package(GLUT REQUIRED)
+add_executable(demo main.c)
+target_link_libraries(demo ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
+if(APPLE)
+target_compile_options(demo PRIVATE -Wno-deprecated-declarations)
+endif()
+

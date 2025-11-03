@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.10)
+project(Chapter06_CoordinateSystems C)
+
+set(CMAKE_C_STANDARD 99)
+find_package(OpenGL REQUIRED)
+find_package(GLUT REQUIRED)
+
+add_executable(demo main.c camera.c)
+target_link_libraries(demo ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
+target_include_directories(demo PRIVATE ${OPENGL_INCLUDE_DIR} ${GLUT_INCLUDE_DIR})
+
+if(APPLE)
+    target_compile_options(demo PRIVATE -Wno-deprecated-declarations)
+endif()
+
+if(UNIX AND NOT APPLE)
+    target_link_libraries(demo m)
+endif()
+
